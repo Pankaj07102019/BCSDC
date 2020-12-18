@@ -1,0 +1,72 @@
+﻿@model BCSDC.Models.FormPreview
+@{
+    ViewBag.Title = "Form Preview";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style="margin-top:50px;">
+    <fieldset>
+        <legend>Preview  @Model.FormName </legend>
+    </fieldset>
+</div>
+@foreach (var Items in Model.lstControls)
+{
+    <div class="container">
+        <div class="column">
+            @Html.Label(Items.FieldName)
+        </div>
+        @if (Items.FieldType == "TextBox")
+        {
+            <div class="column">
+                @Html.Label(Items.FieldType)
+            </div>
+        }
+        else if (Items.FieldType == "CheckBox")
+        {
+            <div class="column">
+                @Html.Label(Items.FieldType)
+            </div>
+        }
+        else if (Items.FieldType == "DropDownList")
+        {
+            <div class="column">
+                @Html.Label(Items.FieldType)
+            </div>
+        }
+        else if (Items.FieldType == "RadioButton")
+        {
+            <div class="column">
+                @Html.Label(Items.FieldType)
+            </div>
+        }
+        else if (Items.FieldType == "SignatureControl")
+        {
+            <div class="column">
+                @Html.Label(Items.FieldType)
+            </div>
+        }
+        else
+        {
+            <div class="column">
+
+            </div>
+        }
+
+    </div>
+    <br />
+}
+
+<div class="editor-field">
+    <div style="margin-top: 10px;">
+        <input id="Savebutton" type="button" value="Save Form" />
+    </div>
+</div>
+
+@section scripts {
+    <link rel="stylesheet" type="text/css" href="~/Content/FormDesign.css" />
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+        });
+    </script>
+}

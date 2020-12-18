@@ -1,0 +1,161 @@
+﻿@model BCSDC.Models.CreateForms
+@{
+    ViewBag.Title = "Create Forms";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style="margin-top:50px;">
+    @using (Html.BeginForm())
+    {
+        <div>
+            <fieldset>
+                <legend>Create Form</legend>
+                <div class="container">
+                    <div class="column">
+                        @Html.LabelFor(c => c.FormName)
+                    </div>
+                    <div class="column">
+                        @Html.TextBoxFor(c => c.FormName)
+                    </div>
+                    <div class="column">
+                        @Html.LabelFor(c => c.FieldName)
+                    </div>
+                    <div class="column">
+                        @Html.TextBoxFor(c => c.FieldName)
+                    </div>
+                </div> <br />
+                <div class="container">
+                    <div class="column">
+                        @Html.LabelFor(c => c.FieldType)
+                    </div>
+                    <div class="column">
+                        @Html.DropDownListFor(c => c.FieldType,
+                         new List<SelectListItem> {
+                              new SelectListItem { Value = "0" , Text = "Select Field Type" },
+                              new SelectListItem { Value = "TextBox" , Text = "TextBox" },
+                              new SelectListItem { Value = "CheckBox" , Text = "CheckBox" },
+                              new SelectListItem { Value = "DropDownList" , Text = "DropDownList" },
+                              new SelectListItem { Value = "RadioButton" , Text = "RadioButton" },
+                              new SelectListItem { Value = "SignatureControl" , Text = "SignatureControl" }
+                           },
+                         new { style = "width: 180px; height: 25px; " })
+                    </div>
+                    <div class="column">
+                        @Html.LabelFor(c => c.FieldValue)
+                    </div>
+                    <div class="column">
+                        @Html.TextBoxFor(c => c.FieldValue)
+                    </div>
+                </div> <br />
+                <div class="editor-field">
+                    <div>
+                        <input id="addrowbutton" type="button" value="Add Items" />
+                    </div>
+                </div>
+                <div style="margin-bottom:10px;"></div>
+                <div class="editor-label">
+                    <div id='jqxWidget'>
+                        <div id="RequirementGrid"></div>
+                    </div>
+                </div>
+                <div class="editor-field">
+                    <div style="margin-top: 10px;">
+                        @*<input id="Previewbutton" type="button" value="Preview Form" onclick="@("window.location.href='" + @Url.Action("FormPreview", "CreateForms") + "'");" />*@&nbsp;&nbsp;
+                        <input id="Previewbutton" type="button" value="Preview Form" />&nbsp;&nbsp;
+                        <input id="Savebutton" type="button" value="Save Form" />
+                    </div>
+                </div>
+                <div style="margin-bottom:10px;"></div>
+            </fieldset>
+        </div>
+    }
+</div>
+
+@section scripts {
+    <script type="text/javascript" src="http://jqwidgets.com/jquery-widgets-demo/scripts/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="http://jqwidgets.com/jquery-widgets-demo/jqwidgets/jqx-all.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://jqwidgets.com/jquery-widgets-demo/jqwidgets/styles/jqx.base.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/FormDesign.css" />
+    <script type="text/javascript">
+        $(document).ready(function () {
+            BindGrid();
+        });
+        function BindGrid() {
+            var data = null;
+            var source = {
+                localdata: data,
+                datafields: [{
+                    name: 'FieldName',
+                    type: 'string'
+                }, {
+                    name: 'FieldType',
+                    type: 'string'
+                }, {
+                    name: 'FieldValue',
+                    type: 'string'
+                }],
+                datatype: "array"
+            };
+
+            var adapter = new $.jqx.dataAdapter(source);
+            $("#RequirementGrid").jqxGrid({
+                width: 800,
+                height: 200,
+                theme: 'energyblue',
+                source: adapter,
+                sortable: true,
+                columns: [{
+                    text: 'Field Name',
+                    columngroup: 'Name',
+                    datafield: 'FieldName',
+                    width: 350
+                }, {
+                    text: 'Field Type',
+                    columngroup: 'Type',
+                    datafield: 'FieldType',
+                    width: 150
+                }, {
+                    text: 'Field Value',
+                    datafield: 'FieldValue',
+                    columngroup: 'Type',
+                    width: 300
+                }],
+            });
+        }
+
+        $("#addrowbutton").jqxButton({
+            theme: 'energyblue',
+            height: 30
+        });
+
+        $("#addrowbutton").on('click', function () {
+            $("#RequirementGrid").jqxGrid('addrow', 1, [{ "FieldName": $("#FieldName").val(), "FieldType": $("#FieldType").val(), "FieldValue": $("#FieldValue").val() }])
+        });
+
+        $("#Previewbutton").click(function () {
+            debugger;
+            var rows = $('#RequirementGrid').jqxGrid('getrows');
+            var lstControl = new Array();
+            for (var i = 0; i < rows.length; i++) {
+
+                if (rows[i].nar1 != 0) {
+                    lstControl.push(rows[i]);
+                }
+                //console.log(rows[i].art_id + " " + rows[i].preporuka + " " + rows[i].vsklId1 + " " + rows[i].nar1);
+            }
+            //var jsoo = JSON.stringify(drtyRows);
+            var requestData = { "FormName": $("#FormName").val(), "lstControls": lstControl };
+            //alert(jsoo);
+            $.ajax({
+                type: "post",
+                //dataType: "json",
+                url: "/CreateForms/RedirectToPreview",
+                //contentType: "application/json; charset=utf-8",
+                data: requestData,
+                success: function () {
+                    window.location = '@Url.Action("FormPreview", "CreateForms")';
+                }
+            });
+        });
+    </script>
+}

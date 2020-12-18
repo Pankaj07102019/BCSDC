@@ -1,0 +1,9 @@
+D:\Projects\Mexico\BCSDC\BCSDC\Common\bin\Debug\netstandard2.0\Common.deps.json
+D:\Projects\Mexico\BCSDC\BCSDC\Common\bin\Debug\netstandard2.0\Common.dll
+D:\Projects\Mexico\BCSDC\BCSDC\Common\bin\Debug\netstandard2.0\Common.pdb
+D:\Projects\Mexico\BCSDC\BCSDC\Common\obj\Debug\netstandard2.0\Common.csprojAssemblyReference.cache
+D:\Projects\Mexico\BCSDC\BCSDC\Common\obj\Debug\netstandard2.0\Common.csproj.CoreCompileInputs.cache
+D:\Projects\Mexico\BCSDC\BCSDC\Common\obj\Debug\netstandard2.0\Common.AssemblyInfoInputs.cache
+D:\Projects\Mexico\BCSDC\BCSDC\Common\obj\Debug\netstandard2.0\Common.AssemblyInfo.cs
+D:\Projects\Mexico\BCSDC\BCSDC\Common\obj\Debug\netstandard2.0\Common.dll
+D:\Projects\Mexico\BCSDC\BCSDC\Common\obj\Debug\netstandard2.0\Common.pdb
