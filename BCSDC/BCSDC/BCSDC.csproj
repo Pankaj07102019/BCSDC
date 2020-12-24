@@ -161,6 +161,7 @@
     <Content Include="Scripts\jSignature\jSignature.min.js" />
     <Content Include="Scripts\jSignature\jSignature.min.noconflict.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\signature.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -179,6 +180,7 @@
     <Content Include="Views\CreateForms\CreateForms.cshtml" />
     <Content Include="Views\CreateForms\Signature.cshtml" />
     <Content Include="Views\CreateForms\FormPreview.cshtml" />
+    <Content Include="Views\CreateForms\_Signature.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

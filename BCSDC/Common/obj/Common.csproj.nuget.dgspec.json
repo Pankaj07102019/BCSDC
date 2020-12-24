@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Projects\\Mexico\\BCSDC\\BCSDC\\Common\\Common.csproj": {}
+    "D:\\Projects\\Mexico\\BCSDC-Git\\BCSDC\\Common\\Common.csproj": {}
   },
   "projects": {
-    "D:\\Projects\\Mexico\\BCSDC\\BCSDC\\Common\\Common.csproj": {
+    "D:\\Projects\\Mexico\\BCSDC-Git\\BCSDC\\Common\\Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Projects\\Mexico\\BCSDC\\BCSDC\\Common\\Common.csproj",
+        "projectUniqueName": "D:\\Projects\\Mexico\\BCSDC-Git\\BCSDC\\Common\\Common.csproj",
         "projectName": "Common",
-        "projectPath": "D:\\Projects\\Mexico\\BCSDC\\BCSDC\\Common\\Common.csproj",
+        "projectPath": "D:\\Projects\\Mexico\\BCSDC-Git\\BCSDC\\Common\\Common.csproj",
         "packagesPath": "C:\\Users\\Pankaj Saini\\.nuget\\packages\\",
-        "outputPath": "D:\\Projects\\Mexico\\BCSDC\\BCSDC\\Common\\obj\\",
+        "outputPath": "D:\\Projects\\Mexico\\BCSDC-Git\\BCSDC\\Common\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

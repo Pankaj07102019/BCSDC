@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "edq9p+IztVAY6jbPwPRsMHC4hQXDheOd2pKMeEgf7l2c3dmlZ89PLcTwyUVyEx8Q3ijRE8K9Rw6yheMPX+DMaQ==",
+  "dgSpecHash": "mRPLr1YG9DlffYnIcPakQYvrCVtoHe0Gez6r4cdx4T9Zpg7CAZqy9TbyU5nLyPqmh30Ep0e7+Wrpf+dGOB2ZUw==",
   "success": true,
-  "projectFilePath": "D:\\Projects\\Mexico\\BCSDC\\BCSDC\\Common\\Common.csproj",
+  "projectFilePath": "D:\\Projects\\Mexico\\BCSDC-Git\\BCSDC\\Common\\Common.csproj",
   "expectedPackageFiles": [
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\Pankaj Saini\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",

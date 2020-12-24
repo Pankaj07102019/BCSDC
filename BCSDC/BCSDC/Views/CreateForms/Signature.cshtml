@@ -1,52 +1,8 @@
-﻿
-@{
-    ViewBag.Title = "Signature";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
-    <div style="margin-top:50px;">
-            <div>
-                <fieldset>
-                    <legend>Have a Signature Please</legend>
-                    <div id="signature"></div>
-                    <div style="margin-bottom:10px;"></div>
-                </fieldset>
-            </div>
+﻿<div style="margin-top:5px;">
+    <div>
+        <div id="signature"> </div>
+        <div style="margin-bottom:10px;">Reset</div>
     </div>
+</div>
 
-
-
-@section scripts {
-    <script type="text/javascript" src="~/Scripts/jSignature/flashcanvas.js"></script>
-    <script type="text/javascript" src="~/Scripts/jSignature/jSignature.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/jSignature/jSignature.min.noconflict.js"></script>
-    <script>
-
-        var $sigdiv = $("#signature");
-        $sigdiv.jSignature(); // inits the jSignature widget.
-        // after some doodling...
-        $sigdiv.jSignature("reset"); // clears the canvas and rerenders the decor on it.
-
-        // Getting signature as SVG and rendering the SVG within the browser. 
-        // (!!! inline SVG rendering from IMG element does not work in all browsers !!!)
-        // this export plugin returns an array of [mimetype, base64-encoded string of SVG of the signature strokes]
-        var datapair = $sigdiv.jSignature("getData", "svgbase64");
-        var i = new Image();
-        i.src = "data:" + datapair[0] + "," + datapair[1];
-        $(i).appendTo($("#someelement")); // append the image (SVG) to DOM.
-
-        // Getting signature as "base30" data pair
-        // array of [mimetype, string of jSIgnature"s custom Base30-compressed format]
-        datapair = $sigdiv.jSignature("getData", "base30");
-        // reimporting the data into jSignature.
-        // import plugins understand data-url-formatted strings like "data:mime;encoding,data"
-        $sigdiv.jSignature("setData", "data:" + datapair.join(",")); 
-
-        $(document).ready(function () {
-            // INIT JSignature Control and inject into DIV
-            $("#signature").jSignature({ width: 650, height: 150 });
-        });
-
-    </script>
-}
 

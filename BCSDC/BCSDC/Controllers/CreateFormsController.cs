@@ -18,18 +18,16 @@ namespace BCSDC.Controllers
         {
             return View("~/Views/CreateForms/Signature.cshtml");
         }
-
         public ActionResult FormPreview()
-        {
+        {              
             FormPreview FormPreviewModel = new FormPreview();
             FormPreviewModel = (FormPreview) Session["lstControls"];
             return View("~/Views/CreateForms/FormPreview.cshtml", FormPreviewModel);
         }
-
         public void RedirectToPreview(FormPreview FromDetails)
         {
             Session["lstControls"] = FromDetails;
             RedirectToAction("FormPreview");         
-        }
+        }   
     }
 }
