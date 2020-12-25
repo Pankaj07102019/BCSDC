@@ -130,9 +130,12 @@ D:\Projects\Mexico\BCSDC-Git\BCSDC\BCSDC\bin\roslyn\vbc.rsp
 D:\Projects\Mexico\BCSDC-Git\BCSDC\BCSDC\bin\roslyn\VBCSCompiler.exe
 D:\Projects\Mexico\BCSDC-Git\BCSDC\BCSDC\bin\roslyn\VBCSCompiler.exe.config
 D:\Projects\Mexico\BCSDC-Git\BCSDC\BCSDC\bin\Antlr3.Runtime.dll
+D:\Projects\Mexico\BCSDC-Git\BCSDC\BCSDC\bin\BCSDC.DAL.dll
+D:\Projects\Mexico\BCSDC-Git\BCSDC\BCSDC\bin\BCSDC.Model.dll
 D:\Projects\Mexico\BCSDC-Git\BCSDC\BCSDC\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 D:\Projects\Mexico\BCSDC-Git\BCSDC\BCSDC\bin\Microsoft.Web.Infrastructure.dll
 D:\Projects\Mexico\BCSDC-Git\BCSDC\BCSDC\bin\Newtonsoft.Json.dll
+D:\Projects\Mexico\BCSDC-Git\BCSDC\BCSDC\bin\System.Data.SqlClient.dll
 D:\Projects\Mexico\BCSDC-Git\BCSDC\BCSDC\bin\System.Web.Helpers.dll
 D:\Projects\Mexico\BCSDC-Git\BCSDC\BCSDC\bin\System.Web.Mvc.dll
 D:\Projects\Mexico\BCSDC-Git\BCSDC\BCSDC\bin\System.Web.Optimization.dll
@@ -141,6 +144,9 @@ D:\Projects\Mexico\BCSDC-Git\BCSDC\BCSDC\bin\System.Web.WebPages.Deployment.dll
 D:\Projects\Mexico\BCSDC-Git\BCSDC\BCSDC\bin\System.Web.WebPages.dll
 D:\Projects\Mexico\BCSDC-Git\BCSDC\BCSDC\bin\System.Web.WebPages.Razor.dll
 D:\Projects\Mexico\BCSDC-Git\BCSDC\BCSDC\bin\WebGrease.dll
+D:\Projects\Mexico\BCSDC-Git\BCSDC\BCSDC\bin\BCSDC.Common.dll
+D:\Projects\Mexico\BCSDC-Git\BCSDC\BCSDC\bin\BCSDC.DAL.pdb
+D:\Projects\Mexico\BCSDC-Git\BCSDC\BCSDC\bin\BCSDC.Model.pdb
 D:\Projects\Mexico\BCSDC-Git\BCSDC\BCSDC\bin\System.Web.Helpers.xml
 D:\Projects\Mexico\BCSDC-Git\BCSDC\BCSDC\bin\System.Web.Mvc.xml
 D:\Projects\Mexico\BCSDC-Git\BCSDC\BCSDC\bin\System.Web.Optimization.xml
@@ -151,6 +157,7 @@ D:\Projects\Mexico\BCSDC-Git\BCSDC\BCSDC\bin\System.Web.WebPages.Razor.xml
 D:\Projects\Mexico\BCSDC-Git\BCSDC\BCSDC\bin\Newtonsoft.Json.xml
 D:\Projects\Mexico\BCSDC-Git\BCSDC\BCSDC\bin\Antlr3.Runtime.pdb
 D:\Projects\Mexico\BCSDC-Git\BCSDC\BCSDC\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\Projects\Mexico\BCSDC-Git\BCSDC\BCSDC\bin\BCSDC.Common.pdb
 D:\Projects\Mexico\BCSDC-Git\BCSDC\BCSDC\obj\Debug\BCSDC.csprojAssemblyReference.cache
 D:\Projects\Mexico\BCSDC-Git\BCSDC\BCSDC\obj\Debug\BCSDC.csproj.CoreCompileInputs.cache
 D:\Projects\Mexico\BCSDC-Git\BCSDC\BCSDC\obj\Debug\BCSDC.csproj.CopyComplete

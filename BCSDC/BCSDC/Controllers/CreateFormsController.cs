@@ -1,4 +1,6 @@
-﻿using BCSDC.Models;
+﻿using BCSDC.DAL;
+using BCSDC.Models;
+using BM = BCSDC.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,6 +30,21 @@ namespace BCSDC.Controllers
         {
             Session["lstControls"] = FromDetails;
             RedirectToAction("FormPreview");         
-        }   
+        }
+        public ActionResult SaveForm(BM.FormPreview FromDetails)
+        {
+            try
+            {
+
+                Session["lstControls"] = FromDetails;
+                var retValue = FormsDAL.SaveForm(FromDetails, "INSERT");
+
+                return Json(new {Status = "SUCCESS", StatusText = "Form Saved Successfully!!" }, JsonRequestBehavior.AllowGet);               
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Status = "FAILURE", StatusText = ex.ToString() }, JsonRequestBehavior.AllowGet);
+            }
+        }
     }
 }

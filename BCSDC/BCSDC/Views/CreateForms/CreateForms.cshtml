@@ -133,7 +133,6 @@
         });
 
         $("#Previewbutton").click(function () {
-            debugger;
             var rows = $('#RequirementGrid').jqxGrid('getrows');
             var lstControl = new Array();
             for (var i = 0; i < rows.length; i++) {
@@ -154,6 +153,30 @@
                 data: requestData,
                 success: function () {
                     window.location = '@Url.Action("FormPreview", "CreateForms")';
+                }
+            });
+        });
+
+        $("#Savebutton").click(function () {
+            var rows = $('#RequirementGrid').jqxGrid('getrows');
+            var lstControl = new Array();
+            for (var i = 0; i < rows.length; i++) {
+
+                if (rows[i].nar1 != 0) {
+                    lstControl.push(rows[i]);
+                }
+            }
+            var requestData = { "FormName": $("#FormName").val(), "lstControls": lstControl };
+            $.ajax({
+                type: "post",
+                dataType: "json",
+                url: "/CreateForms/SaveForm",
+                data: requestData,
+                success: function (data) {
+                    if (data.Status == "SUCCESS")
+                        alert(data.StatusText);
+                    else
+                        alert(data.StatusText);
                 }
             });
         });

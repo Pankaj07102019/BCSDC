@@ -1,0 +1,13 @@
+D:\Projects\Mexico\BCSDC-Git\BCSDC\BCSDC.DAL\bin\Debug\BCSDC.DAL.dll
+D:\Projects\Mexico\BCSDC-Git\BCSDC\BCSDC.DAL\bin\Debug\BCSDC.DAL.pdb
+D:\Projects\Mexico\BCSDC-Git\BCSDC\BCSDC.DAL\bin\Debug\BCSDC.Common.dll
+D:\Projects\Mexico\BCSDC-Git\BCSDC\BCSDC.DAL\bin\Debug\BCSDC.Model.dll
+D:\Projects\Mexico\BCSDC-Git\BCSDC\BCSDC.DAL\bin\Debug\System.Data.SqlClient.dll
+D:\Projects\Mexico\BCSDC-Git\BCSDC\BCSDC.DAL\bin\Debug\BCSDC.Common.pdb
+D:\Projects\Mexico\BCSDC-Git\BCSDC\BCSDC.DAL\bin\Debug\BCSDC.Model.pdb
+D:\Projects\Mexico\BCSDC-Git\BCSDC\BCSDC.DAL\bin\Debug\System.Data.SqlClient.xml
+D:\Projects\Mexico\BCSDC-Git\BCSDC\BCSDC.DAL\obj\Debug\BCSDC.DAL.csprojAssemblyReference.cache
+D:\Projects\Mexico\BCSDC-Git\BCSDC\BCSDC.DAL\obj\Debug\BCSDC.DAL.csproj.CoreCompileInputs.cache
+D:\Projects\Mexico\BCSDC-Git\BCSDC\BCSDC.DAL\obj\Debug\BCSDC.DAL.csproj.CopyComplete
+D:\Projects\Mexico\BCSDC-Git\BCSDC\BCSDC.DAL\obj\Debug\BCSDC.DAL.dll
+D:\Projects\Mexico\BCSDC-Git\BCSDC\BCSDC.DAL\obj\Debug\BCSDC.DAL.pdb
