@@ -1,0 +1,137 @@
+﻿@model BCSDC.Models.CreateForms
+@{
+    ViewBag.Title = "Search Forms";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style="margin-top:50px;">
+    @using (Html.BeginForm())
+    {
+        <div>
+            <fieldset>
+                <legend>Search Form</legend>
+                <div class="container">
+                    <div class="column">
+                        @Html.LabelFor(c => c.FormName)
+                    </div>
+                    <div class="column">
+                        @Html.TextBoxFor(c => c.FormName)
+                    </div>
+                    <div class="column">
+                        @Html.LabelFor(c => c.FieldName)
+                    </div>
+                    <div class="column">
+                        @Html.TextBoxFor(c => c.FieldName)
+                    </div>
+                </div> <br />
+                <div class="container">
+                    <div class="column">
+                        @Html.LabelFor(c => c.FieldType)
+                    </div>
+                    <div class="column">
+                        @Html.DropDownListFor(c => c.FieldType,
+                         new List<SelectListItem> {
+                              new SelectListItem { Value = "0" , Text = "Select Field Type" },
+                              new SelectListItem { Value = "TextBox" , Text = "TextBox" },
+                              new SelectListItem { Value = "CheckBox" , Text = "CheckBox" },
+                              new SelectListItem { Value = "DropDownList" , Text = "DropDownList" },
+                              new SelectListItem { Value = "RadioButton" , Text = "RadioButton" },
+                              new SelectListItem { Value = "SignatureControl" , Text = "SignatureControl" }
+                           },
+                         new { style = "width: 180px; height: 25px; " })
+                    </div>
+                    <div class="column">
+                        @Html.LabelFor(c => c.FieldValue)
+                    </div>
+                    <div class="column">
+                        @Html.TextBoxFor(c => c.FieldValue)
+                    </div>
+                </div> <br />
+                <div class="editor-field">
+                    <div>
+                        <input id="Searchbutton" type="button" value="Search" />
+                    </div>
+                </div>
+                <div style="margin-bottom:10px;"></div>
+                <div class="editor-label">
+                    <div id='jqxWidget'>
+                        <div id="SearchGrid"></div>
+                    </div>
+                </div>
+                <div style="margin-bottom:10px;"></div>
+            </fieldset>
+        </div>
+    }
+</div>
+
+@section scripts {
+    <script type="text/javascript" src="http://jqwidgets.com/jquery-widgets-demo/scripts/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="http://jqwidgets.com/jquery-widgets-demo/jqwidgets/jqx-all.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://jqwidgets.com/jquery-widgets-demo/jqwidgets/styles/jqx.base.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/FormDesign.css" />
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //BindGrid();
+        });
+        function BindGrid() {
+            var Inputdata = { "Form_Name": $("#FormName").val(), "Field_Name": $("#FieldName").val(), "Field_Type": $("#FieldType").val(), "Field_Value": $("#FieldValue").val() };
+            var source =
+            {
+                datatype: "json",
+                datafields: [
+                    { name: 'Form_Name', type: 'string' },
+                    { name: 'Field_Name', type: 'string' },
+                    { name: 'Field_Type', type: 'string' },
+                    { name: 'Field_Value', type: 'string' }
+                ],
+                data: Inputdata,
+                url: "/Search/SearchFormsGrid",
+                async: false
+            };
+            var adapter = new $.jqx.dataAdapter(source, {
+                loadComplete: function (records) {
+                    //alert('Loaded ' + records.length + ' records.');
+                }
+            });
+
+            $("#SearchGrid").jqxGrid({
+                width: 800,
+                height: 200,
+                theme: 'energyblue',
+                source: adapter,
+                sortable: true,
+                columns: [{
+                    text: 'Form Name',
+                    columngroup: 'Name',
+                    datafield: 'Form_Name',
+                    width: 350
+                }, {
+                    text: 'Field Name',
+                    columngroup: 'Type',
+                    datafield: 'Field_Name',
+                    width: 150
+                }, {
+                    text: 'Field Type',
+                    datafield: 'Field_Type',
+                    columngroup: 'Type',
+                    width: 150
+                }, {
+                    text: 'Field Value',
+                    datafield: 'Field_Value',
+                    columngroup: 'Type',
+                    width: 200
+                }],
+            });
+        }
+
+        $("#Searchbutton").jqxButton({
+            theme: 'energyblue',
+            height: 30
+        });
+
+        $("#Searchbutton").on('click', function () {
+            BindGrid();
+            //$("#SearchGrid").jqxGrid('addrow', 1, [{ "FieldName": $("#FieldName").val(), "FieldType": $("#FieldType").val(), "FieldValue": $("#FieldValue").val() }])
+        });
+    </script>
+}

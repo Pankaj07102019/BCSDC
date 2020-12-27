@@ -126,6 +126,7 @@
     <Compile Include="Controllers\CreateFormsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -184,6 +185,7 @@
     <Content Include="Views\CreateForms\Signature.cshtml" />
     <Content Include="Views\CreateForms\FormPreview.cshtml" />
     <Content Include="Views\CreateForms\_Signature.cshtml" />
+    <Content Include="Views\Search\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

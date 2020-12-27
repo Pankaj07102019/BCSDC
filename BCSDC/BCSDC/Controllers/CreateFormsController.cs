@@ -35,10 +35,8 @@ namespace BCSDC.Controllers
         {
             try
             {
-
                 Session["lstControls"] = FromDetails;
                 var retValue = FormsDAL.SaveForm(FromDetails, "INSERT");
-
                 return Json(new {Status = "SUCCESS", StatusText = "Form Saved Successfully!!" }, JsonRequestBehavior.AllowGet);               
             }
             catch (Exception ex)
