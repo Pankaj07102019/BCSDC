@@ -49,7 +49,8 @@
                 </div> <br />
                 <div class="editor-field">
                     <div>
-                        <input id="addrowbutton" type="button" value="Add Items" />
+                        <input id="addrowbutton" type="button" value="Add Item" />&nbsp;&nbsp;
+                        <input id="deleterowbutton" type="button" value="Delete Item" />
                     </div>
                 </div>
                 <div style="margin-bottom:10px;"></div>
@@ -128,8 +129,23 @@
             height: 30
         });
 
+        $("#deleterowbutton").jqxButton({
+            theme: 'energyblue',
+            height: 30
+        });
+
         $("#addrowbutton").on('click', function () {
             $("#RequirementGrid").jqxGrid('addrow', 1, [{ "FieldName": $("#FieldName").val(), "FieldType": $("#FieldType").val(), "FieldValue": $("#FieldValue").val() }])
+        });
+
+        $("#deleterowbutton").on('click', function () {
+            debugger;
+            //var Rowid = $('#RequirementGrid').jqxGrid('getrowid', 0);
+            var selectedrowindex = $('#RequirementGrid').jqxGrid('selectedrowindex'); 
+            if (selectedrowindex == -1) 
+                alert("Please select row to remove!!");
+                else
+                $('#RequirementGrid').jqxGrid('deleterow', selectedrowindex);
         });
 
         $("#Previewbutton").click(function () {

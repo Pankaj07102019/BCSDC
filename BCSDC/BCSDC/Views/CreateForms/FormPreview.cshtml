@@ -100,9 +100,34 @@
         $sigdiv.jSignature("setData", "data:" + datapair.join(","));
 
         $(document).ready(function () {
+            var list = [];
+            list = @Html.Raw(Json.Encode(Model.lstControls));
+
+            for (var i = 0; i < list.length; i++) {
+            if (list[i].FieldType == "SignatureControl")
             // INIT JSignature Control and inject into DIV
             $("#signature").jSignature({ width: 600, height: 150 });
+            }
         });
 
+    </script>
+    <script>
+        $("#Savebutton").click(function () {
+            var lstSelControls = @Html.Raw(Json.Encode(Model.lstControls));
+            var FName = @Html.Raw(Json.Encode(Model.FormName));
+            var requestData = { "FormName": FName, "lstControls": lstSelControls };
+            $.ajax({
+                type: "post",
+                dataType: "json",
+                url: "/CreateForms/SaveForm",
+                data: requestData,
+                success: function (data) {
+                    if (data.Status == "SUCCESS")
+                        alert(data.StatusText);
+                    else
+                        alert(data.StatusText);
+                }
+                });
+            });
     </script>
 }
