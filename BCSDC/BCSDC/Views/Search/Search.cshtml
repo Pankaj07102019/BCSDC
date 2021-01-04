@@ -73,6 +73,11 @@
         $(document).ready(function () {
             //BindGrid();
         });
+
+        var tooltiprenderer = function (element) {
+            $(element).parent().jqxTooltip({ position: 'mouse', content: $(element).text() });
+        }
+
         function BindGrid() {
             var Inputdata = { "Form_Name": $("#FormName").val(), "Field_Name": $("#FieldName").val(), "Field_Type": $("#FieldType").val(), "Field_Value": $("#FieldValue").val() };
             var source =
@@ -95,31 +100,63 @@
             });
 
             $("#SearchGrid").jqxGrid({
-                width: 800,
+                width: '99%',
                 height: 200,
                 theme: 'energyblue',
                 source: adapter,
                 sortable: true,
-                columns: [{
+                columns: [
+                {
+                        text: 'View Form', datafield: 'View_Form', rendered: tooltiprenderer, width: '10%', columntype: 'button', cellsrenderer: function () { return "View Form" },
+                        buttonclick: function (row) {
+                        editrow = row;
+                        var dataRecord = $('#SearchGrid').jqxGrid('getrowdata', editrow);
+                        $.ajax({
+                            type: "post",
+                            url: "/FillingFormDetails/RedirectToFormsDetails" + "?Form_Name=" + dataRecord.Form_Name,
+                            data: dataRecord,
+                            success: function () {
+                                window.location = '@Url.Action("FillFormDetails", "FillingFormDetails")';
+                            }
+                        });
+
+                    }
+                }, {
+                    text: 'Delete Form', datafield: 'Delete_Form', rendered: tooltiprenderer, width:'10%', columntype: 'button', cellsrenderer: function () { return "Delete Form" },
+                        buttonclick: function (row) {
+                        editrow = row;
+                        var dataRecord = $('#SearchGrid').jqxGrid('getrowdata', editrow);
+                        $.post("/FillingFormDetails/DeleteForms",
+                            {
+                                Form_Name: dataRecord.Form_Name
+                            },
+                            function (data) { alert("Delete!!") }
+                        );
+                   }
+                }, {
                     text: 'Form Name',
                     columngroup: 'Name',
                     datafield: 'Form_Name',
-                    width: 350
+                    rendered: tooltiprenderer,
+                    width: '40%'
                 }, {
                     text: 'Field Name',
                     columngroup: 'Type',
                     datafield: 'Field_Name',
-                    width: 150
+                    rendered: tooltiprenderer,
+                    width: '10%'
                 }, {
                     text: 'Field Type',
                     datafield: 'Field_Type',
+                    rendered: tooltiprenderer,
                     columngroup: 'Type',
-                    width: 150
+                    width: '10%'
                 }, {
                     text: 'Field Value',
                     datafield: 'Field_Value',
                     columngroup: 'Type',
-                    width: 200
+                    rendered: tooltiprenderer,
+                    width: '20%'
                 }],
             });
         }
