@@ -13,56 +13,65 @@
 
     foreach (var Items in Model.lstControls)
     {
-        <div class="container">
-            <div class="column">
-                @Html.Label(Items.FieldName)
-            </div>
-            @if (Items.FieldType == "TextBox")
-            {
-                counter++;
-                <div class="column">
-                    @Html.TextBox("StudentName" + counter)
-                </div>
-            }
-            else if (Items.FieldType == "CheckBox")
-            {
-                counter++;
-                <div class="column">
-                    @Html.CheckBox("isActive", true)
-                </div>
-            }
-            else if (Items.FieldType == "DropDownList")
-            {
-                counter++;
-                string[] listItems = Items.FieldValue.Split(',');
-                <div class="column">
-                    @Html.DropDownList("StudentGender",
-                                        new SelectList(listItems),
-                                        "Select Items",
-                                        new { @class = "form-control" })
-                </div>
-            }
-            else if (Items.FieldType == "RadioButton")
-            {
-                counter++;
-                <div class="column">
-                    @Html.RadioButton("Gender", "Male")
-                </div>
-            }
-            else if (Items.FieldType == "SignatureControl")
-            {
-                counter++;
-                <div class="column" style="border:dotted; font-weight:bold; width:300px; height:150px;">
-                    @{ Html.RenderPartial("~/Views/CreateForms/Signature.cshtml"); }
-                </div>
-            }
-            else
-            {
-                <div class="column">
-
-                </div>
-            }
+    <div class="container">
+        <div class="column">
+            @Html.Label(Items.FieldName)
         </div>
+        @if (Items.FieldType == "TextBox")
+        {
+            counter++;
+            <div class="column">
+                @Html.TextBox("StudentName" + counter)
+            </div>
+        }
+        else if (Items.FieldType == "CheckBox")
+        {
+            counter++;
+            <div class="column">
+                @Html.CheckBox("IsActive" + counter, true)
+            </div>
+        }
+        else if (Items.FieldType == "DropDownList")
+        {
+            counter++;
+            string[] listItems = Items.FieldValue.Split(',');
+            <div class="column">
+                @Html.DropDownList("StudentGender" + counter,
+                                    new SelectList(listItems),
+                                    "Select Items",
+                                    new { @class = "form-control" })
+            </div>
+        }
+        else if (Items.FieldType == "RadioButton")
+        {
+            counter++;
+            <div class="column">
+                @Html.RadioButton("Gender" + counter, "Male")
+            </div>
+        }
+        else if (Items.FieldType == "SignatureControl")
+        {
+            counter++;
+            <div class="column" style="border:dotted; font-weight:bold; width:300px; height:100px;">
+                @{ Html.RenderPartial("~/Views/CreateForms/Signature.cshtml"); }
+                <input id="Clearbutton" type="button" value="Reset" />
+            </div>
+        }
+        else if (Items.FieldType == "DatePickerControl")
+        {
+            counter++;
+            <div class="column">
+                @Html.TextBox("DatePicker" + counter, "", new { @Style = "width: 178px; height: 26px;", type = "date" })
+                <!--<input type="date" id="dt" style="width:178px; height:26px;">-->
+            </div>
+        }
+        else
+        {
+            <div class="column">
+
+            </div>
+        }
+    </div>
         <br />
     }
 }
@@ -106,10 +115,9 @@
             for (var i = 0; i < list.length; i++) {
             if (list[i].FieldType == "SignatureControl")
             // INIT JSignature Control and inject into DIV
-            $("#signature").jSignature({ width: 600, height: 150 });
+                $("#signature").jSignature({ width: 600, height: 150 });
             }
         });
-
     </script>
     <script>
         $("#Savebutton").click(function () {
@@ -128,6 +136,10 @@
                         alert(data.StatusText);
                 }
                 });
-            });
+        });
+
+        $("#Clearbutton").click(function () {
+            $("#signature").jSignature("reset");
+        });
     </script>
 }

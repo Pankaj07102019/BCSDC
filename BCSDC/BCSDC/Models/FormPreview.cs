@@ -8,6 +8,8 @@ namespace BCSDC.Models
 {
     public class FormPreview
     {
+        [UIHint("SignaturePad")]
+        public byte[] Signature { get; set; }
         public string FormName { get; set; }
 
         public List<FormControlsList> lstControls { get; set; }

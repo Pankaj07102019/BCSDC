@@ -10,7 +10,6 @@ D:\Projects\Mexico\BCSDC-Git\BCSDC\BCSDC.Common\bin\Debug\System.Data.SqlClient.
 D:\Projects\Mexico\BCSDC-Git\BCSDC\BCSDC.Common\bin\Debug\System.Security.AccessControl.xml
 D:\Projects\Mexico\BCSDC-Git\BCSDC\BCSDC.Common\bin\Debug\System.Security.Permissions.xml
 D:\Projects\Mexico\BCSDC-Git\BCSDC\BCSDC.Common\bin\Debug\System.Security.Principal.Windows.xml
-D:\Projects\Mexico\BCSDC-Git\BCSDC\BCSDC.Common\obj\Debug\BCSDC.Common.csprojAssemblyReference.cache
 D:\Projects\Mexico\BCSDC-Git\BCSDC\BCSDC.Common\obj\Debug\BCSDC.Common.csproj.CoreCompileInputs.cache
 D:\Projects\Mexico\BCSDC-Git\BCSDC\BCSDC.Common\obj\Debug\BCSDC.Common.csproj.CopyComplete
 D:\Projects\Mexico\BCSDC-Git\BCSDC\BCSDC.Common\obj\Debug\BCSDC.Common.dll
