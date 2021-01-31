@@ -9,7 +9,7 @@
         <legend>@Model.FormName Forms Details</legend>
     </fieldset>
 </div>
-@{int counter = 1;
+@{int counter = 0;
 
     foreach (var Items in Model.lstControls)
     {
@@ -21,14 +21,14 @@
         {
             counter++;
             <div class="column">
-                @Html.TextBox("StudentName" + counter)
+                @Html.TextBox("txt" + counter)
             </div>
         }
         else if (Items.FieldType == "CheckBox")
         {
             counter++;
             <div class="column">
-                @Html.CheckBox("IsActive" + counter, true)
+                @Html.CheckBox("chk" + counter, true)
             </div>
         }
         else if (Items.FieldType == "DropDownList")
@@ -36,7 +36,7 @@
             counter++;
             string[] listItems = Items.FieldValue.Split(',');
             <div class="column">
-                @Html.DropDownList("StudentGender" + counter,
+                @Html.DropDownList("ddl" + counter,
                                     new SelectList(listItems),
                                     "Select Items",
                                     new { @class = "form-control" })
@@ -46,7 +46,7 @@
         {
             counter++;
             <div class="column">
-                @Html.RadioButton("Gender" + counter, "Male")
+                @Html.RadioButton("rdo" + counter, "Male")
             </div>
         }
         else if (Items.FieldType == "SignatureControl")
@@ -61,8 +61,7 @@
         {
             counter++;
             <div class="column">
-                @Html.TextBox("DatePicker" + counter, "", new { @Style = "width: 178px; height: 26px;", type = "date" })
-                <!--<input type="date" id="dt" style="width:178px; height:26px;">-->
+                @Html.TextBox("dp" + counter, "", new { @Style = "width: 178px; height: 26px;", type = "date" })
             </div>
         }
         else
@@ -123,7 +122,57 @@
         $("#Savebutton").click(function () {
             var lstSelControls = @Html.Raw(Json.Encode(Model.lstControls));
             var FName = @Html.Raw(Json.Encode(Model.FormName));
-            var requestData = { "FormName": FName, "lstControls": lstSelControls };
+
+            var ControlsValues = [];
+            $.each(lstSelControls, function (key, value) {
+                key = key + 1;
+                if (value.FieldType == "SignatureControl") {
+                    //var $sigdiv = $("#signature");
+                    //var datapair = $sigdiv.jSignature("getData", "svgbase64");
+                    var data = $('#signature').jSignature('getData');
+                    value.FieldValue = data;
+                    alert("SignatureControl - FieldValue" + value.FieldValue);
+                    ControlsValues.push(value);
+                }
+                else if (value.FieldType == "TextBox") {
+                    alert("FieldType:" + value.FieldType);
+                    alert("Key:" + key);
+                    value.FieldValue = $("#txt" + key).val();
+                    alert("Text - FieldValue:" + value.FieldValue);
+                    ControlsValues.push(value);
+                }
+                else if (value.FieldType == "CheckBox") {
+                    alert("FieldType:" + value.FieldType);
+                    alert("Key:" + key);
+                    value.FieldValue = $("#chk" + key).val();
+                    alert("CheckBox - FieldValue:" + value.FieldValue);
+                    ControlsValues.push(value);
+                }
+                else if (value.FieldType == "DropDownList") {
+                    alert("FieldType:" + value.FieldType);
+                    alert("Key:" + key);
+                    value.FieldValue = $("#ddl" + key).val();
+                    alert("DropDownList - FieldValue:" + value.FieldValue);
+                    ControlsValues.push(value);
+                }
+                else if (value.FieldType == "RadioButton") {
+                    alert("FieldType:" + value.FieldType);
+                    alert("Key:" + key);
+                    value.FieldValue = $("#rdo" + key).val();
+                    alert("RadioButton - FieldValue:" + value.FieldValue);
+                    ControlsValues.push(value);
+                }
+                else if (value.FieldType == "DatePickerControl") {
+                    alert("FieldType:" + value.FieldType);
+                    alert("Key:" + key);
+                    value.FieldValue = $("#dp" + key).val();
+                    alert("DatePickerControl - FieldValue:" + value.FieldValue);
+                    ControlsValues.push(value);
+                }
+                //$("#signature").jSignature({ width: 600, height: 150 });
+                //alert("Index #" + i + ": " + l);
+            });
+            var requestData = { "FormName": FName, "lstControls": ControlsValues };
             $.ajax({
                 type: "post",
                 dataType: "json",
@@ -134,11 +183,12 @@
                         alert(data.StatusText);
                     else
                         alert(data.StatusText);
-                }
+                   }
                 });
-        });
+            });
 
         $("#Clearbutton").click(function () {
+            //alert($sigdiv.jSignature("getData", "base30"));
             $("#signature").jSignature("reset");
         });
     </script>
