@@ -45,6 +45,20 @@ namespace BCSDC.DAL
             rtval = da.executeDMLQuery("INSERT_FORM_CONTROLS", prm);
             return rtval;
         }
+        public static int SaveFormFillingDetails(FillingFormsDetails FormFillingDetails)
+        {
+            int rtval = 0;
+            DataTable dt = ToDataTable(FormFillingDetails.lstControls);
+            DataAccess da = new DataAccess();
+            SqlParameter[] prm = new SqlParameter[2];
+            prm[0] = new SqlParameter("@Form_Filling_Details", dt);
+            prm[0].SqlDbType = SqlDbType.Structured;
+            prm[0].TypeName = "dbo.FormFillingDetails";
+
+            prm[1] = new SqlParameter("@Form_Name", FormFillingDetails.FormName);
+            rtval = da.executeDMLQuery("Form_Filling_Details", prm);
+            return rtval;
+        }
 
         public static DataTable ToDataTable<T>(List<T> items)
         {
@@ -72,6 +86,15 @@ namespace BCSDC.DAL
             }
             //put a breakpoint here and check datatable
             return dataTable;
+        }
+        public static int DeleteForm(string Form_Name)
+        {
+            int rtval = 0;
+            DataAccess da = new DataAccess();
+            SqlParameter[] prm = new SqlParameter[1];
+            prm[0] = new SqlParameter("@FormName", Form_Name);
+            rtval = da.executeDMLQuery("DELETE_FORM", prm);
+            return rtval;
         }
     }
 }

@@ -127,50 +127,30 @@
             $.each(lstSelControls, function (key, value) {
                 key = key + 1;
                 if (value.FieldType == "SignatureControl") {
-                    //var $sigdiv = $("#signature");
-                    //var datapair = $sigdiv.jSignature("getData", "svgbase64");
                     var data = $('#signature').jSignature('getData');
                     value.FieldValue = data;
-                    alert("SignatureControl - FieldValue" + value.FieldValue);
                     ControlsValues.push(value);
                 }
                 else if (value.FieldType == "TextBox") {
-                    alert("FieldType:" + value.FieldType);
-                    alert("Key:" + key);
                     value.FieldValue = $("#txt" + key).val();
-                    alert("Text - FieldValue:" + value.FieldValue);
                     ControlsValues.push(value);
                 }
                 else if (value.FieldType == "CheckBox") {
-                    alert("FieldType:" + value.FieldType);
-                    alert("Key:" + key);
                     value.FieldValue = $("#chk" + key).val();
-                    alert("CheckBox - FieldValue:" + value.FieldValue);
                     ControlsValues.push(value);
                 }
                 else if (value.FieldType == "DropDownList") {
-                    alert("FieldType:" + value.FieldType);
-                    alert("Key:" + key);
                     value.FieldValue = $("#ddl" + key).val();
-                    alert("DropDownList - FieldValue:" + value.FieldValue);
                     ControlsValues.push(value);
                 }
                 else if (value.FieldType == "RadioButton") {
-                    alert("FieldType:" + value.FieldType);
-                    alert("Key:" + key);
-                    value.FieldValue = $("#rdo" + key).val();
-                    alert("RadioButton - FieldValue:" + value.FieldValue);
+                    value.FieldValue = $("#rdo" + key).is(":checked");
                     ControlsValues.push(value);
                 }
                 else if (value.FieldType == "DatePickerControl") {
-                    alert("FieldType:" + value.FieldType);
-                    alert("Key:" + key);
                     value.FieldValue = $("#dp" + key).val();
-                    alert("DatePickerControl - FieldValue:" + value.FieldValue);
                     ControlsValues.push(value);
                 }
-                //$("#signature").jSignature({ width: 600, height: 150 });
-                //alert("Index #" + i + ": " + l);
             });
             var requestData = { "FormName": FName, "lstControls": ControlsValues };
             $.ajax({

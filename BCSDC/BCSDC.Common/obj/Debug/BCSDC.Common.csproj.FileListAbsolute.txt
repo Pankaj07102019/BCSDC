@@ -14,3 +14,4 @@ D:\Projects\Mexico\BCSDC-Git\BCSDC\BCSDC.Common\obj\Debug\BCSDC.Common.csproj.Co
 D:\Projects\Mexico\BCSDC-Git\BCSDC\BCSDC.Common\obj\Debug\BCSDC.Common.csproj.CopyComplete
 D:\Projects\Mexico\BCSDC-Git\BCSDC\BCSDC.Common\obj\Debug\BCSDC.Common.dll
 D:\Projects\Mexico\BCSDC-Git\BCSDC\BCSDC.Common\obj\Debug\BCSDC.Common.pdb
+D:\Projects\Mexico\BCSDC-Git\BCSDC\BCSDC.Common\obj\Debug\BCSDC.Common.csprojAssemblyReference.cache

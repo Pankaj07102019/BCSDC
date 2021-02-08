@@ -136,11 +136,26 @@
         });
 
         $("#addrowbutton").on('click', function () {
+            var rows = $('#RequirementGrid').jqxGrid('getrows');
+            if ($("#FieldType").val() == "SignatureControl") {
+                for (var i = 0; i < rows.length; i++) {
+                    if (rows[i].FieldType == "SignatureControl") {
+                        alert("Signature Control has already added!!");
+                        return false;
+                    }
+                    //console.log(rows[i].art_id + " " + rows[i].preporuka + " " + rows[i].vsklId1 + " " + rows[i].nar1);
+                }
+            }
+            else if ($("#FieldType").val() == "DropDownList") {
+                if ($("#FieldValue").val() == "") {
+                        alert("Please enter Field Values like A,B,C");
+                        return false;
+                    }
+            }
             $("#RequirementGrid").jqxGrid('addrow', 1, [{ "FieldName": $("#FieldName").val(), "FieldType": $("#FieldType").val(), "FieldValue": $("#FieldValue").val() }])
         });
 
         $("#deleterowbutton").on('click', function () {
-            debugger;
             //var Rowid = $('#RequirementGrid').jqxGrid('getrowid', 0);
             var selectedrowindex = $('#RequirementGrid').jqxGrid('selectedrowindex'); 
             if (selectedrowindex == -1) 

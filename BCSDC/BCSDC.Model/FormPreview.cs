@@ -18,4 +18,17 @@ namespace BCSDC.Model
 
         public string FieldValue { get; set; }
     }
+    public class FillingFormsDetails
+    {
+        public string FormName { get; set; }
+
+        public List<FillingForms> lstControls { get; set; }
+    }
+
+    public class FillingForms
+    {
+        public string FieldName { get; set; }
+
+        public string FieldValue { get; set; }
+    }
 }
