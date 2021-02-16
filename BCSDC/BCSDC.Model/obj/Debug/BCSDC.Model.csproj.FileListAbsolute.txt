@@ -3,4 +3,3 @@ D:\Projects\Mexico\BCSDC-Git\BCSDC\BCSDC.Model\bin\Debug\BCSDC.Model.pdb
 D:\Projects\Mexico\BCSDC-Git\BCSDC\BCSDC.Model\obj\Debug\BCSDC.Model.csproj.CoreCompileInputs.cache
 D:\Projects\Mexico\BCSDC-Git\BCSDC\BCSDC.Model\obj\Debug\BCSDC.Model.dll
 D:\Projects\Mexico\BCSDC-Git\BCSDC\BCSDC.Model\obj\Debug\BCSDC.Model.pdb
-D:\Projects\Mexico\BCSDC-Git\BCSDC\BCSDC.Model\obj\Debug\BCSDC.Model.csprojAssemblyReference.cache

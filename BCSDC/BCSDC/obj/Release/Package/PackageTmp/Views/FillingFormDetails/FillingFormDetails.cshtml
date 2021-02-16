@@ -1,0 +1,175 @@
+﻿@model BCSDC.Models.FormPreview
+@{
+    ViewBag.Title = "Filling Forms Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style="margin-top:50px;">
+    <fieldset>
+        <legend>@Model.FormName Forms Details</legend>
+    </fieldset>
+</div>
+@{int counter = 0;
+
+    foreach (var Items in Model.lstControls)
+    {
+    <div class="container">
+        <div class="column">
+            @Html.Label(Items.FieldName)
+        </div>
+        @if (Items.FieldType == "TextBox")
+        {
+            counter++;
+            <div class="column">
+                @Html.TextBox("txt" + counter)
+            </div>
+        }
+        else if (Items.FieldType == "CheckBox")
+        {
+            counter++;
+            <div class="column">
+                @Html.CheckBox("chk" + counter, true)
+            </div>
+        }
+        else if (Items.FieldType == "DropDownList")
+        {
+            counter++;
+            string[] listItems = Items.FieldValue.Split(',');
+            <div class="column">
+                @Html.DropDownList("ddl" + counter,
+                                    new SelectList(listItems),
+                                    "Select Items",
+                                    new { @class = "form-control" })
+            </div>
+        }
+        else if (Items.FieldType == "RadioButton")
+        {
+            counter++;
+            <div class="column">
+                @Html.RadioButton("rdo" + counter, "Male")
+            </div>
+        }
+        else if (Items.FieldType == "SignatureControl")
+        {
+            counter++;
+            <div class="column" style="border:dotted; font-weight:bold; width:300px; height:100px;">
+                @{ Html.RenderPartial("~/Views/CreateForms/Signature.cshtml"); }
+                <input id="Clearbutton" type="button" value="Reset" />
+            </div>
+        }
+        else if (Items.FieldType == "DatePickerControl")
+        {
+            counter++;
+            <div class="column">
+                @Html.TextBox("dp" + counter, "", new { @Style = "width: 178px; height: 26px;", type = "date" })
+            </div>
+        }
+        else
+        {
+            <div class="column">
+
+            </div>
+        }
+    </div>
+        <br />
+    }
+}
+
+<div class="editor-field">
+    <div style="margin-top: 10px;">
+        <input id="Savebutton" type="button" value="Save Details" />
+    </div>
+</div>
+
+@section scripts {
+    <link rel="stylesheet" type="text/css" href="~/Content/FormDesign.css" />
+    <script type="text/javascript" src="~/Scripts/jSignature/flashcanvas.js"></script>
+    <script type="text/javascript" src="~/Scripts/jSignature/jSignature.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/jSignature/jSignature.min.noconflict.js"></script>
+    <script>
+        var $sigdiv = $("#signature");
+        $sigdiv.jSignature(); // inits the jSignature widget.
+        // after some doodling...
+        $sigdiv.jSignature("reset"); // clears the canvas and rerenders the decor on it.
+
+        // Getting signature as SVG and rendering the SVG within the browser.
+        // (!!! inline SVG rendering from IMG element does not work in all browsers !!!)
+        // this export plugin returns an array of [mimetype, base64-encoded string of SVG of the signature strokes]
+        var datapair = $sigdiv.jSignature("getData", "svgbase64");
+        var i = new Image();
+        i.src = "data:" + datapair[0] + "," + datapair[1];
+        $(i).appendTo($("#someelement")); // append the image (SVG) to DOM.
+
+        // Getting signature as "base30" data pair
+        // array of [mimetype, string of jSIgnature"s custom Base30-compressed format]
+        datapair = $sigdiv.jSignature("getData", "base30");
+        // reimporting the data into jSignature.
+        // import plugins understand data-url-formatted strings like "data:mime;encoding,data"
+        $sigdiv.jSignature("setData", "data:" + datapair.join(","));
+
+        $(document).ready(function () {
+            var list = [];
+            list = @Html.Raw(Json.Encode(Model.lstControls));
+
+            for (var i = 0; i < list.length; i++) {
+            if (list[i].FieldType == "SignatureControl")
+            // INIT JSignature Control and inject into DIV
+                $("#signature").jSignature({ width: 600, height: 150 });
+            }
+        });
+    </script>
+    <script>
+        $("#Savebutton").click(function () {
+            var lstSelControls = @Html.Raw(Json.Encode(Model.lstControls));
+            var FName = @Html.Raw(Json.Encode(Model.FormName));
+
+            var ControlsValues = [];
+            $.each(lstSelControls, function (key, value) {
+                key = key + 1;
+                if (value.FieldType == "SignatureControl") {
+                    var data = $('#signature').jSignature('getData');
+                    value.FieldValue = data;
+                    ControlsValues.push(value);
+                }
+                else if (value.FieldType == "TextBox") {
+                    value.FieldValue = $("#txt" + key).val();
+                    ControlsValues.push(value);
+                }
+                else if (value.FieldType == "CheckBox") {
+                    value.FieldValue = $("#chk" + key).val();
+                    ControlsValues.push(value);
+                }
+                else if (value.FieldType == "DropDownList") {
+                    value.FieldValue = $("#ddl" + key).val();
+                    ControlsValues.push(value);
+                }
+                else if (value.FieldType == "RadioButton") {
+                    value.FieldValue = $("#rdo" + key).is(":checked");
+                    ControlsValues.push(value);
+                }
+                else if (value.FieldType == "DatePickerControl") {
+                    value.FieldValue = $("#dp" + key).val();
+                    ControlsValues.push(value);
+                }
+            });
+            var requestData = { "FormName": FName, "lstControls": ControlsValues };
+            $.ajax({
+                type: "post",
+                dataType: "json",
+                url: "/FillingFormDetails/SaveDetails",
+                data: requestData,
+                success: function (data) {
+                    if (data.Status == "SUCCESS")
+                        alert(data.StatusText);
+                    else
+                        alert(data.StatusText);
+                   }
+                });
+            });
+
+        $("#Clearbutton").click(function () {
+            //alert($sigdiv.jSignature("getData", "base30"));
+            $("#signature").jSignature("reset");
+        });
+    </script>
+}

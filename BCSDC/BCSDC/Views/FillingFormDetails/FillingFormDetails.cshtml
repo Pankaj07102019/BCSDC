@@ -52,7 +52,7 @@
         else if (Items.FieldType == "SignatureControl")
         {
             counter++;
-            <div class="column" style="border:dotted; font-weight:bold; width:300px; height:100px;">
+            <div class="column" style="border:dotted; font-weight:bold; width:300px; height:150px;">
                 @{ Html.RenderPartial("~/Views/CreateForms/Signature.cshtml"); }
                 <input id="Clearbutton" type="button" value="Reset" />
             </div>
@@ -61,7 +61,7 @@
         {
             counter++;
             <div class="column">
-                @Html.TextBox("dp" + counter, "", new { @Style = "width: 178px; height: 26px;", type = "date" })
+                @Html.TextBox("dp" + counter, "", new { @Style = "width: 178px; height: 26px;", type = "datetime-local" })
             </div>
         }
         else
@@ -164,12 +164,45 @@
                     else
                         alert(data.StatusText);
                    }
-                });
+            });
+            ClearControls();
             });
 
         $("#Clearbutton").click(function () {
             //alert($sigdiv.jSignature("getData", "base30"));
             $("#signature").jSignature("reset");
         });
+        function ClearControls() {
+            var lstSelControls = @Html.Raw(Json.Encode(Model.lstControls));
+
+            //var ControlsValues = [];
+            $.each(lstSelControls, function (key, value) {
+                key = key + 1;
+                if (value.FieldType == "SignatureControl") {
+                    $("#signature").jSignature("reset");
+                    //ControlsValues.push(value);
+                }
+                else if (value.FieldType == "TextBox") {
+                    $("#txt" + key).val("");
+                    //ControlsValues.push(value);
+                }
+                else if (value.FieldType == "CheckBox") {
+                    $("#chk" + key).val(false);
+                    //ControlsValues.push(value);
+                }
+                else if (value.FieldType == "DropDownList") {
+                    $("#ddl" + key).val("Select Items");
+                    //ControlsValues.push(value);
+                }
+                else if (value.FieldType == "RadioButton") {
+                    $("#rdo" + key).is(":unchecked");
+                    //ControlsValues.push(value);
+                }
+                else if (value.FieldType == "DatePickerControl") {
+                    $("#dp" + key).val("");
+                    //ControlsValues.push(value);
+                }
+            });
+        }
     </script>
 }
